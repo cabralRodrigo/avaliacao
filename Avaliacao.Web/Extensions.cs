@@ -1,6 +1,8 @@
 ﻿using Avaliacao.Aplicacao.Repositorio;
+using Avaliacao.Aplicacao.Servico;
 using Avaliacao.Dados;
 using Avaliacao.Dominio.Repositorio;
+using Avaliacao.Dominio.Servico;
 using Microsoft.Extensions.DependencyInjection;
 using NHibernate;
 
@@ -18,6 +20,12 @@ namespace Avaliacao.Web
         {
             services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
             services.AddScoped<IClienteTelefoneRepositorio, ClienteTelefoneRepositorio>();
+        }
+
+        public static void AddServicos(this IServiceCollection services)
+        {
+            services.AddScoped<IClienteServico, ClienteServico>();
+            services.AddScoped<IClienteTelefoneServico, ClienteTelefoneServico>();
         }
     }
 }

@@ -56,7 +56,7 @@ namespace Avaliacao.Web.Bundle
             try
             {
                 using var stream = File.OpenRead(this.bundleOptions.CaminhoManifestoBundles);
-                return await JsonSerializer.DeserializeAsync<InformacaoBundle[]>(stream, JsonOptions).ConfigureAwait(false);
+                return await JsonSerializer.DeserializeAsync<InformacaoBundle[]>(stream, JsonOptions);
             }
             catch (Exception ex)
             {

@@ -21,7 +21,7 @@ namespace Avaliacao.Aplicacao.Repositorio
             if (model is null)
                 throw new ArgumentNullException(nameof(model));
 
-            await this.Session.SaveAsync(model).ConfigureAwait(false);
+            await this.Session.SaveAsync(model);
         }
 
         public async Task Atualizar(TModel model)
@@ -29,12 +29,12 @@ namespace Avaliacao.Aplicacao.Repositorio
             if (model is null)
                 throw new ArgumentNullException(nameof(model));
 
-            await this.Session.UpdateAsync(model).ConfigureAwait(false);
+            await this.Session.UpdateAsync(model);
         }
 
         public async Task<IList<TModel>> Listar()
         {
-            return await this.Session.CreateCriteria<TModel>().ListAsync<TModel>().ConfigureAwait(false);
+            return await this.Session.CreateCriteria<TModel>().ListAsync<TModel>();
         }
 
         public Task Remover(int id)
@@ -47,7 +47,7 @@ namespace Avaliacao.Aplicacao.Repositorio
             if (model is null)
                 throw new ArgumentNullException(nameof(model));
 
-            await this.Session.DeleteAsync(model).ConfigureAwait(false);
+            await this.Session.DeleteAsync(model);
         }
     }
 }

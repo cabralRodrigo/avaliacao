@@ -28,6 +28,7 @@ namespace Avaliacao.Web
             services.AddBundles(this.environment);
             services.AddNHibernate(this.connectionString);
             services.AddRepositorios();
+            services.AddServicos();
         }
 
         public void Configure(IApplicationBuilder app)
