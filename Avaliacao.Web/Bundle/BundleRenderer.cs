@@ -28,12 +28,12 @@ namespace Avaliacao.Web.Bundle
                 var tags = new StringBuilder();
 
                 foreach (var arquivo in bundle.Conteudo)
-                    tags.AppendLine($"<link ref=\"stylesheet\" href=\"{arquivo}\"/>");
-
+                    tags.AppendLine($"<link rel=\"stylesheet\" type=\"text/css\" href=\"{arquivo}\"/>");
+                
                 return new HtmlString(tags.ToString());
             }
             else
-                return new HtmlString($"<link rel=\"stylesheet\" href=\"{this.bundleOptions.UrlBundles}/{bundle.Nome}\"/>");
+                return new HtmlString($"<link rel=\"stylesheet\" type=\"text/css\" href=\"{this.bundleOptions.UrlBundles}/{bundle.Nome}\"/>");
         }
 
         public async Task<HtmlString> Script(string nomeBundle)
