@@ -1,0 +1,18 @@
+[
+  {
+    "nome": "libs.js",
+    "tipo": "script",
+    "conteudo": [
+      "./node_modules/jquery/dist/jquery.js",
+      "./node_modules/popper.js/dist/umd/popper.js",
+      "./node_modules/bootstrap/dist/js/bootstrap.js"
+    ]
+  },
+  {
+    "nome": "libs.css",
+    "tipo": "estilo",
+    "conteudo": [
+      "./node_modules/bootstrap/dist/css/bootstrap.css"
+    ]
+  }
+]
