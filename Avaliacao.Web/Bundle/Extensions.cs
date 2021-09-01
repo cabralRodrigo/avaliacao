@@ -19,10 +19,6 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 options.UsarCache = !env.IsDevelopment();
                 options.RenderizarConteudoCompleto = env.IsDevelopment();
-
-                options.UsarCache = true;
-                options.RenderizarConteudoCompleto = false;
-
                 options.CaminhoManifestoBundles = "./bundles.json";
                 options.UrlBundles = "bundles";
             });
