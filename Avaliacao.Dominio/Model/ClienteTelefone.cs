@@ -1,11 +1,11 @@
 ﻿namespace Avaliacao.Dominio.Model
 {
-    public class ClienteTelefone
+    public class ClienteTelefone : IModel
     {
-        public int Id { get; set; }
-        public int ClienteId { get; set; }
-        public TelefoneTipo TelefoneTipoId { get; set; }
+        public virtual int Id { get; set; }
+        public virtual TelefoneTipo TelefoneTipoId { get; set; }
+        public virtual string Telefone { get; set; }
 
-        public string Telefone { get; set; }
+        public virtual Cliente Cliente { get; set; }
     }
 }

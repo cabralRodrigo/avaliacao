@@ -5,6 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Avaliacao.Dominio\Avaliacao.Dominio.csproj" />
+    <ProjectReference Include="..\Avaliacao.Dados\Avaliacao.Dados.csproj" />
   </ItemGroup>
 </Project>
