@@ -39,14 +39,19 @@ namespace Avaliacao.Aplicacao.Servico
             return await this.Repositorio.Listar();
         }
 
+        public async Task<TModel> Buscar(int id)
+        {
+            return await this.Repositorio.Buscar(id);
+        }
+
         public async Task Remover(int id)
         {
-            await this.Remover(id);
+            await this.Repositorio.Remover(id);
         }
 
         public async Task Remover(TModel model)
         {
-            await this.Remover(model);
+            await this.Repositorio.Remover(model);
         }
     }
 }

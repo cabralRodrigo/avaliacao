@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Avaliacao.Aplicacao.Repositorio
 {
-    public abstract class Repositorio<TModel> : IRepositorio<TModel> where TModel : class, IModel, new()
+    public class Repositorio<TModel> : IRepositorio<TModel> where TModel : class, IModel, new()
     {
         protected ISession Session { get; }
 
@@ -35,6 +35,11 @@ namespace Avaliacao.Aplicacao.Repositorio
         public async Task<IList<TModel>> Listar()
         {
             return await this.Session.CreateCriteria<TModel>().ListAsync<TModel>();
+        }
+
+        public async Task<TModel> Buscar(int id)
+        {
+            return await this.Session.GetAsync<TModel>(id);
         }
 
         public Task Remover(int id)
