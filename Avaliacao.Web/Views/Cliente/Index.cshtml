@@ -2,11 +2,23 @@
 
 @this.DefinirTitulo("Clientes")
 
+@section scripts {
+    <script type="text/javascript">
+        (function ($) {
+            'use strict';
+
+            $(function () {
+                $('#clientes').DataTable();
+            });
+        })(jQuery);
+    </script>
+}
+
 <div class="text-right mb-3">
     <a href="@Url.Action("Novo")" class="btn btn-primary">Adicionar</a>
 </div>
 
-<table class="table table-bordered table-striped table-hover">
+<table id="clientes" class="table table-bordered table-striped table-hover">
     <thead>
         <tr>
             <th>Nome</th>
@@ -23,7 +35,7 @@
                 <td>@cliente.Nome</td>
                 <td>@cliente.Email</td>
                 <td>@(cliente.Nascimento?.ToString("dd/MM/yyyy") ?? "-")</td>
-                
+
                 <td>
                     <ul>
                         @foreach (var telefone in cliente.Telefones)
