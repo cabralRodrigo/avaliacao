@@ -1,0 +1,43 @@
+﻿@model IList<Cliente>
+
+@this.DefinirTitulo("Clientes")
+
+<div class="text-right mb-3">
+    <a href="@Url.Action("Novo")" class="btn btn-primary">Adicionar</a>
+</div>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Nascimento</th>
+            <th>Telefones</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cliente in this.Model)
+        {
+            <tr>
+                <td>@cliente.Nome</td>
+                <td>@cliente.Email</td>
+                <td>@(cliente.Nascimento?.ToString("dd/MM/yyyy") ?? "-")</td>
+                
+                <td>
+                    <ul>
+                        @foreach (var telefone in cliente.Telefones)
+                        {
+                            <li>@telefone.Telefone (@telefone.TelefoneTipoId)</li>
+                        }
+                    </ul>
+                </td>
+
+                <td class="text-center">
+                    <a href="@Url.Action("Editar", new { id = cliente.Id })" class="btn btn-sm btn-warning">Editar</a>
+                    <a href="@Url.Action("Remover", new { id = cliente.Id })" class="btn btn-sm btn-danger">Remover</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

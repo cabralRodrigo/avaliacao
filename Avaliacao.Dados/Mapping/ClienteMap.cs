@@ -37,7 +37,7 @@ namespace Avaliacao.Dados.Mapping
                 nascimento.NotNullable(false);
             });
 
-            this.Set(s => s.Telefones, set =>
+            this.Bag(s => s.Telefones, set =>
             {
                 set.Inverse(true);
                 set.Key(key => key.Column(column => column.Name("ClienteId")));

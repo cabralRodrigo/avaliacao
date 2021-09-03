@@ -1,0 +1,13 @@
+﻿@model Cliente
+@this.DefinirTitulo("Remover cliente")
+
+<form asp-action="Remover">
+    <input type="hidden" name="id" value="@Model.Id" />
+
+    Deseja realmente remover o cliente <strong>@Model.Nome</strong>?
+
+    <div class="text-right">
+        <a href="@Url.Action("Index")" class="btn btn-secondary">Voltar</a>
+        <button type="submit" class="btn btn-danger">Remover</button>
+    </div>
+</form>

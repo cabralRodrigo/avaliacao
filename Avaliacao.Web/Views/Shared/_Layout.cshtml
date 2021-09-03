@@ -1,13 +1,25 @@
-﻿<!DOCTYPE html>
+﻿@{ var titulo = this.BuscarTitulo(); }
+
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Avaliação</title>
+    <title>@titulo</title>
     @await Bundles.Estilo("libs.css")
 </head>
 <body>
-    @RenderBody()
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="#">Avaliação Rodrigo</a>
+        </nav>
+    </header>
+
+    <main role="main" class="container" style="padding: 60px 15px 0;">
+        <h1 class="mt-5">@titulo</h1>
+        <hr />
+        @RenderBody()
+    </main>
 
     @await Bundles.Script("libs.js")
     @RenderSection("scripts", false)
