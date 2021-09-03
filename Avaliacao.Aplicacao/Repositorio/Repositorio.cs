@@ -30,6 +30,7 @@ namespace Avaliacao.Aplicacao.Repositorio
                 throw new ArgumentNullException(nameof(model));
 
             await this.Session.UpdateAsync(model);
+            await this.Session.FlushAsync();
         }
 
         public async Task<IList<TModel>> Listar()
