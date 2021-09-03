@@ -25,21 +25,25 @@ namespace Avaliacao.Web.Controllers
         [HttpGet]
         public IActionResult Novo()
         {
-            var model = this.CriarModel(new(), ModoOperacao.Criacao);
-            if (model is null)
-                return this.NotFound(model);
-
-            return this.View("Detalhes", model);
+            return this.View("Detalhes", new ClienteDetalhesModel
+            {
+                ModoOperacao = ModoOperacao.Criacao,
+                Cliente = new()
+            });
         }
 
         [HttpGet]
         public async Task<IActionResult> Editar(int id)
         {
-            var model = this.CriarModel(await this.clienteServico.Buscar(id), ModoOperacao.Edicao);
-            if (model is null)
+            var cliente = await this.clienteServico.Buscar(id);
+            if (cliente is null)
                 return this.NotFound();
 
-            return this.View("Detalhes", model);
+            return this.View("Detalhes", new ClienteDetalhesModel
+            {
+                ModoOperacao = ModoOperacao.Edicao,
+                Cliente = cliente
+            });
         }
 
         [HttpGet]
@@ -63,15 +67,18 @@ namespace Avaliacao.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Salvar(ClienteEditarModel model)
+        public async Task<IActionResult> Salvar(ClienteDetalhesModel model)
         {
+            var outroCliente = this.clienteServico.BuscarPorEmail(model?.Cliente?.Email);
+            if (outroCliente is not null && outroCliente.Id != model?.Cliente?.Id)
+                this.ModelState.AddModelError(nameof(ClienteDetalhesModel.Cliente) + "." + nameof(Cliente.Email), $"Esse email já está sendo utilizado pelo cliente '{outroCliente.Nome}'.");
+
             if (!this.ModelState.IsValid)
             {
-                model = this.CriarModel(model?.Cliente, model.ModoOperacao);
                 if (model is null)
                     return this.NotFound();
 
-                return this.View("Editar", model);
+                return this.View("Detalhes", model);
             }
 
             switch (model.ModoOperacao)
@@ -86,22 +93,6 @@ namespace Avaliacao.Web.Controllers
             }
 
             return this.RedirectToAction("Index");
-        }
-
-        private ClienteEditarModel CriarModel(Cliente cliente, ModoOperacao modoOperacao)
-        {
-            if (!Enum.IsDefined(modoOperacao))
-                return null;
-
-            if (cliente is null)
-                return null;
-
-            return new ClienteEditarModel
-            {
-                ModoOperacao = modoOperacao,
-                Cliente = cliente,
-                TelefoneTipos = Enum.GetValues<TelefoneTipo>().ToSelectListItem()
-            };
         }
     }
 }

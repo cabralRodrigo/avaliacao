@@ -1,4 +1,4 @@
-﻿@model ClienteEditarModel
+﻿@model ClienteDetalhesModel
 
 @this.DefinirTitulo(Model.ModoOperacao switch
 {
@@ -14,16 +14,19 @@
     <div class="mb-3">
         <label asp-for="Cliente.Nome"></label>
         <input type="text" asp-for="Cliente.Nome" class="form-control" />
+        <span asp-validation-for="Cliente.Nome" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Cliente.Email"></label>
         <input type="email" asp-for="Cliente.Email" class="form-control" />
+        <span asp-validation-for="Cliente.Email" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Cliente.Nascimento"></label>
-        <input type="text" asp-for="Cliente.Nascimento" class="form-control" />
+        <input type="date" asp-for="Cliente.Nascimento" class="form-control" />
+        <span asp-validation-for="Cliente.Nascimento" class="text-danger"></span>
     </div>
 
     <div class="text-right">

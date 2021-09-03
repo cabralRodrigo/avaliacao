@@ -29,7 +29,7 @@ namespace Avaliacao.Aplicacao.Repositorio
             if (model is null)
                 throw new ArgumentNullException(nameof(model));
 
-            await this.Session.UpdateAsync(model);
+            await this.Session.MergeAsync(model);
             await this.Session.FlushAsync();
         }
 

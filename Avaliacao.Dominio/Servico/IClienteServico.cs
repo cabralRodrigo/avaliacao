@@ -2,5 +2,8 @@
 
 namespace Avaliacao.Dominio.Servico
 {
-    public interface IClienteServico : IServico<Cliente> { }
+    public interface IClienteServico : IServico<Cliente>
+    {
+        Cliente BuscarPorEmail(string email);
+    }
 }
