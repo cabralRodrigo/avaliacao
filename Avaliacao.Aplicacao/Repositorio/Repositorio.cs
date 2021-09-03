@@ -42,9 +42,12 @@ namespace Avaliacao.Aplicacao.Repositorio
             return await this.Session.GetAsync<TModel>(id);
         }
 
-        public Task Remover(int id)
+        public async Task Remover(int id)
         {
-            return this.Remover(new TModel { Id = id });
+            var model = await this.Buscar(id);
+
+            if (model is not null)
+                await this.Remover(model);
         }
 
         public async Task Remover(TModel model)
@@ -53,6 +56,7 @@ namespace Avaliacao.Aplicacao.Repositorio
                 throw new ArgumentNullException(nameof(model));
 
             await this.Session.DeleteAsync(model);
+            await this.Session.FlushAsync();
         }
     }
 }
