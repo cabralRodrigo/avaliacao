@@ -40,7 +40,7 @@
                     <ul>
                         @foreach (var telefone in cliente.Telefones)
                         {
-                            <li>@telefone.Telefone (@telefone.TelefoneTipoId)</li>
+                            <li>@telefone.Telefone (@telefone.TelefoneTipoId.BuscarDescricao())</li>
                         }
                     </ul>
                 </td>
