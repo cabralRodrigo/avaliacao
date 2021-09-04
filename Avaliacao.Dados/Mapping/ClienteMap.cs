@@ -40,6 +40,7 @@ namespace Avaliacao.Dados.Mapping
             this.Bag(s => s.Telefones, set =>
             {
                 set.Inverse(true);
+                set.Cascade(Cascade.None);
                 set.Key(key => key.Column(column => column.Name("ClienteId")));
             }, relation => relation.OneToMany());
         }

@@ -18,7 +18,7 @@ namespace Avaliacao.Aplicacao.Servico
             this.Repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
         }
 
-        public async Task Adicionar(TModel model)
+        public virtual async Task Adicionar(TModel model)
         {
             if (model is null)
                 throw new ArgumentNullException(nameof(model));
@@ -26,7 +26,7 @@ namespace Avaliacao.Aplicacao.Servico
             await this.Repositorio.Adicionar(model);
         }
 
-        public async Task Atualizar(TModel model)
+        public virtual async Task Atualizar(TModel model)
         {
             if (model is null)
                 throw new ArgumentNullException(nameof(model));
@@ -44,12 +44,12 @@ namespace Avaliacao.Aplicacao.Servico
             return await this.Repositorio.Buscar(id);
         }
 
-        public async Task Remover(int id)
+        public async virtual Task Remover(int id)
         {
             await this.Repositorio.Remover(id);
         }
 
-        public async Task Remover(TModel model)
+        public async virtual Task Remover(TModel model)
         {
             await this.Repositorio.Remover(model);
         }

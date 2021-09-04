@@ -46,9 +46,11 @@ namespace Avaliacao.Aplicacao.Repositorio
         public async Task Remover(int id)
         {
             var model = await this.Buscar(id);
-
             if (model is not null)
-                await this.Remover(model);
+            {
+                await this.Session.DeleteAsync(model);
+                await this.Session.FlushAsync();
+            }
         }
 
         public async Task Remover(TModel model)

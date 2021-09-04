@@ -56,6 +56,12 @@ namespace Avaliacao.Web.Controllers
             return this.View(cliente);
         }
 
+        [HttpGet]
+        public IActionResult Telefone()
+        {
+            return this.PartialView("Telefone", new ClienteTelefone());
+        }
+
         [HttpPost]
         [ActionName("Remover")]
         [ValidateAntiForgeryToken]

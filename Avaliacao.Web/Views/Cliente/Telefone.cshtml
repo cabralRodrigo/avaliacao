@@ -1,0 +1,22 @@
+﻿@model ClienteTelefone
+
+<div class="form-row telefone">
+    <input asp-for="Id" type="hidden" />
+
+    <div class="form-group col-md-6">
+        <label asp-for="Telefone"></label>
+        <input type="text" asp-for="Telefone" class="form-control" />
+        <span asp-validation-for="Telefone" class="text-danger"></span>
+    </div>
+    <div class="form-group col-md-5">
+        <label asp-for="TelefoneTipoId"></label>
+        <select asp-for="TelefoneTipoId" asp-items="@Enum.GetValues<TelefoneTipo>().ToSelectListItem()" class="form-control">
+        </select>
+        <span asp-validation-for="TelefoneTipoId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group col-md-1">
+        <label>Remover</label>
+        <button class="btn btn-danger btn-sm" type="button" onclick="removerTelefone(this);">X</button>
+    </div>
+</div>
